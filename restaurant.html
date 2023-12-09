@@ -122,27 +122,6 @@
         }
     }
 
-    .restaurant {
-        background-color: #ded2a8;
-        width: 400px;
-        padding: 20px;
-        border-radius: 20px;
-    }
-
-    .recipe {
-        background-color: #ded2a8;
-        width: 400px;
-        padding: 20px;
-        border-radius: 20px;
-    }
-
-    .today {
-        background-color: #ded2a8;
-        width: 400px;
-        padding: 20px;
-        border-radius: 20px;
-    }
-
     .button {
         border: none;
         background-color: #302718;
@@ -259,10 +238,26 @@
                 }
             });
         });
-            $(".dropdowncontent").hide();
-            $(".drop").click(function(){
-                $(this).next(".dropdowncontent").slideToggle("slow");
-            });
+    </script>
+    <script>
+        function showSidebar(){
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'flex'
+        }
+        function hideSidebar(){
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'none'
+        }
+
+        function checkWindowWidth() {
+            const windowWidth = window.innerWidth;
+            if (windowWidth >= 600) {
+                hideSidebar();
+            }
+        }
+
+        window.addEventListener('resize', checkWindowWidth);
+        checkWindowWidth();
     </script>
 </head>
 <body>
