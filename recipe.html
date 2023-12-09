@@ -4,10 +4,227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="style1.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    
+    <style>
+    * {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar {
+        overflow: hidden;
+        background-color: #302718;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .items {
+        display: flex;
+        flex-direction: row;
+        margin-top: 0;
+    }
+
+        .navbar a {
+        color: white;
+        text-align: center;
+    }
+
+        .item {
+         overflow: hidden;
+        margin-right: 20px;
+    }
+
+    .item .page {
+        border: none;
+        outline: none;
+        background-color: #302718;
+        color:#ded2a8;
+        margin: 0;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .navbar a:hover, .item:hover .page {
+        background-color: #ded2a8;
+        color: #302718;
+        transition: .3s;
+    }
+
+    .item a:hover {
+        background-color: #302718;
+        color: #ded2a8;
+        transition: .3s;
+    }
+
+    .navbar .menu i {
+        font-size: 30px;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 250px;
+        z-index: 999;
+        background-color: #302718;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        }
+
+    .menu {
+        color:#ded2a8;
+        float: right;
+        padding: 5px;
+    }
+
+    .menu:hover {
+        color: #302718;
+        background-color: #ded2a8;
+    }
+
+    @media screen and (min-width: 600px) {
+        .menu {
+            display: none;
+            position: absolute;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .menu {
+            color: #ded2a8;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #302718;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .home {
+            display: none;
+        }
+        .logo {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .sidebar {
+            width: 100%;
+        }
+    }
+
+    .button {
+        border: none;
+        background-color: #302718;
+        color: #ded2a8;
+        padding: 10px;
+        cursor: pointer;
+        margin-top: 20px;
+        border-radius: 20px;
+    }
+
+    .navbar a img {
+        height: 120px;
+        display: block;
+        margin-bottom: 0;
+    }
+
+    .exit i {
+        color: #ded2a8;
+        font-size: 30px;
+        cursor: pointer;
+        margin-top: 8px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 40px;
+    }
+
+    .gallery .controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 20px 0;
+        list-style: none;
+    }
+
+    .gallery .controls .buttons{
+        height: 40px;
+        width: 140px;
+        background: #302718;
+        color: #DED2A8;
+        font-size: 20px;
+        line-height: 40px;
+        cursor: pointer;
+        margin: 20px;
+        box-shadow: 0 3px 5px rgba(0,0,0,.3);
+        border-radius: 10px;
+    }
+
+    .gallery .image-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        background-color: #302718;
+        padding: 20px;
+    }
+
+    .box a {
+        text-decoration: none;
+    }
+
+    .box img {
+        height: 250px;
+        width: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    h2 {
+        color: #DED2A8;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+        .gallery .image-container {
+            grid-template-columns: repeat(1, 1fr);
+            justify-content: center;
+        }
+
+        .box {
+            width: calc(100% - 20px);
+        }
+
+        .gallery .controls .buttons {
+            font-size: 16px;
+        }
+
+        .box img {
+            height: auto;
+            max-width: 100%;
+        }
+    }
+    </style>
     <script>
         $(document).ready(function(){
             
@@ -21,94 +238,83 @@
                 }
             });
         });
-            $(".dropdowncontent").hide();
-            $(".drop").click(function(){
-                $(this).next(".dropdowncontent").slideToggle("slow");
-            });
     </script>
+    <script>
+        function showSidebar(){
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'flex'
+        }
+        function hideSidebar(){
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'none'
+        }
+
+        function checkWindowWidth() {
+            const windowWidth = window.innerWidth;
+            if (windowWidth >= 600) {
+                hideSidebar();
+            }
+        }
+
+        window.addEventListener('resize', checkWindowWidth);
+        checkWindowWidth();
+    </script>    
 </head>
 <body>
     <div class="navbar" id="myNavbar">
         <div class="sidebar">
             <div class="exit" onclick=hideSidebar()>
-                <a href="#">
-                <i class='bx bx-x'></i>            
-                </a>
+                <i class='bx bx-x'></i>
             </div>
 
-            <div class="dropdown">
-                <a href="#"><button class="drop">Home</button></a>
+            <div class="item logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Grandma's Reviews Logo">
+                </a>
             </div>
     
-            <div class="dropdown">
-                <button class="drop">Restaurants
-                    <i class='bx bxs-down-arrow'></i>
-                </button>
-                <div class="dropdowncontent">
-                    <a href="restaurant.html">Local Indonesian</a>
-                    <a href="restaurant.html">Western</a>
-                    <a href="restaurant.html">Asian</a>
-                </div>
+            <div class="item">
+                <a href="restaurant.html"><button class="page">Restaurants</button></a>
             </div>
     
-            <div class="dropdown">
-                <button class="drop">Recipes
-                    <i class='bx bxs-down-arrow'></i>
-                </button>
-                <div class="dropdowncontent">
-                    <a href="recipe.html">Local Indonesian</a>
-                    <a href="recipe.html">Western</a>
-                    <a href="recipe.html">Asian</a>
-                </div>
+            <div class="item">
+                <a href="recipe.html"><button class="page">Recipes</button></a>
             </div>
     
-            <div class="dropdown">
-                <button class="drop">Today's Pick
-                    <i class='bx bxs-down-arrow'></i>
-                </button>
-                <div class="dropdowncontent">
-                    <a href="todaypick.html">Breakfast</a>
-                    <a href="todaypick.html">Lunch</a>
-                    <a href="todaypick.html">Dinner</a>
-                </div>
+            <div class="item">
+                <button class="page">About Us</button>
+            </div>
+            
+            <div class="item"><a href="login.html">
+                <button class="page">Login
+                </button></a>
             </div>
         </div>
 
+        <div class="item logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Grandma's Reviews Logo">
+            </a>
+        </div>
+
         <div class="home">
-            <div class="dropdown">
-                <a href="index.html"><button class="drop">Home</button></a>
-            </div>
-
-            <div class="dropdown">
-                <button class="drop">Restaurants
-                    <i class='bx bxs-down-arrow'></i>
-                </button>
-                <div class="dropdowncontent">
-                    <a href="restaurant.html">Local Indonesian</a>
-                    <a href="restaurant.html">Western</a>
-                    <a href="restaurant.html">Asian</a>
+            <div class="items">
+                <div class="item">
+                    <a href="restaurant.html"><button class="page">Restaurants</button></a>
                 </div>
-            </div>
 
-            <div class="dropdown">
-                <button class="drop">Recipes
-                    <i class='bx bxs-down-arrow'></i>
-                </button>
-                <div class="dropdowncontent">
-                    <a href="recipe.html">Local Indonesian</a>
-                    <a href="recipe.html">Western</a>
-                    <a href="recipe.html">Asian</a>
+                <div class="item">
+                    <a href="recipe.html"><button class="page">Recipes</button></a>
                 </div>
-            </div>
 
-            <div class="dropdown">
-                <button class="drop">Today's Pick
-                    <i class='bx bxs-down-arrow'></i>
-                </button>
-                <div class="dropdowncontent">
-                    <a href="todaypick.html">Breakfast</a>
-                    <a href="todaypick.html">Lunch</a>
-                    <a href="todaypick.html">Dinner</a>
+                <div class="item">
+                    <button class="page">About Us</button>
+                </div>
+                
+                <div class="item">
+                    <a href="login.html">
+                        <button class="page">Login</button>
+                    </a>
                 </div>
             </div>
         </div>
